@@ -1,8 +1,3 @@
-# ---
-geometry: margin=1in
-mainfont: "DejaVu Sans"
----
-
 # **BadeBhaiSaab Product Concept: Pillar 1 Blueprint**
 # **User Onboarding & AI Financial Profiling (The Core Engine)**
 
