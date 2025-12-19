@@ -1,5 +1,3 @@
-<div style="page-break-after:always;"></div>
-
 # **BadeBhaiSaab Product Concept: Pillar 1 Blueprint**
 # **User Onboarding & AI Financial Profiling (The Core Engine)**
 
@@ -9,7 +7,6 @@
 | **Pillar Scope** | The entire user journey from initial download to final eligibility decision. |
 
 ***
-<div style="page-break-after:always;"></div>
 
 # **Table of Contents**
 

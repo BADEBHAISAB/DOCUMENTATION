@@ -1,0 +1,1592 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Part 1.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="badebhaisaab-product-concept-pillar-1-blueprint"><strong>BadeBhaiSaab Product Concept: Pillar 1 Blueprint</strong></h1>
+<h1 id="user-onboarding--ai-financial-profiling-the-core-engine"><strong>User Onboarding &amp; AI Financial Profiling (The Core Engine)</strong></h1>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Document Version</th>
+<th style="text-align:left">Date</th>
+<th style="text-align:left">Status</th>
+<th style="text-align:left">Prepared By</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>2.0 (Micro-Detail Blueprint)</strong></td>
+<td style="text-align:left">December 19, 2025</td>
+<td style="text-align:left">Ready for Engineering &amp; Design</td>
+<td style="text-align:left">Product Management Office (PMO)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Pillar Scope</strong></td>
+<td style="text-align:left">The entire user journey from initial download to final eligibility decision.</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h1 id="table-of-contents"><strong>Table of Contents</strong></h1>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Section</th>
+<th style="text-align:left">Title</th>
+<th style="text-align:left">Page</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>I.</strong></td>
+<td style="text-align:left"><strong>Strategic Mandate &amp; Pillar Goals</strong></td>
+<td style="text-align:left">3</td>
+</tr>
+<tr>
+<td style="text-align:left">1.1</td>
+<td style="text-align:left">Strategic Mandate: The 360° Profile</td>
+<td style="text-align:left">3</td>
+</tr>
+<tr>
+<td style="text-align:left">1.2</td>
+<td style="text-align:left">Success Metrics &amp; KPIs for Pillar 1</td>
+<td style="text-align:left">4</td>
+</tr>
+<tr>
+<td style="text-align:left">1.3</td>
+<td style="text-align:left">Target User Profile (Initial Pilot Focus)</td>
+<td style="text-align:left">5</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>II.</strong></td>
+<td style="text-align:left"><strong>The Onboarding Funnel: High-Level Flow &amp; Decision Tree</strong></td>
+<td style="text-align:left">6</td>
+</tr>
+<tr>
+<td style="text-align:left">2.1</td>
+<td style="text-align:left">The 4-Stage Onboarding Flow</td>
+<td style="text-align:left">6</td>
+</tr>
+<tr>
+<td style="text-align:left">2.2</td>
+<td style="text-align:left">Key Decision Point: API vs. Manual Input</td>
+<td style="text-align:left">7</td>
+</tr>
+<tr>
+<td style="text-align:left">2.3</td>
+<td style="text-align:left">Key Decision Point: Eligible vs. Counseling-First</td>
+<td style="text-align:left">8</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>III.</strong></td>
+<td style="text-align:left"><strong>Data Collection Strategy &amp; Technical Specifications</strong></td>
+<td style="text-align:left">9</td>
+</tr>
+<tr>
+<td style="text-align:left">3.1</td>
+<td style="text-align:left">Strategy A: Account Aggregator (AA) API Data Ingestion</td>
+<td style="text-align:left">9</td>
+</tr>
+<tr>
+<td style="text-align:left">3.2</td>
+<td style="text-align:left">Strategy B: Credit Bureau API Data Ingestion</td>
+<td style="text-align:left">11</td>
+</tr>
+<tr>
+<td style="text-align:left">3.3</td>
+<td style="text-align:left">Strategy C: User-Input Data &amp; Guided Questionnaires</td>
+<td style="text-align:left">12</td>
+</tr>
+<tr>
+<td style="text-align:left">3.4</td>
+<td style="text-align:left">Strategy D: OCR &amp; Document Processing (The Fallback)</td>
+<td style="text-align:left">14</td>
+</tr>
+<tr>
+<td style="text-align:left">3.5</td>
+<td style="text-align:left">Mandatory Data Matrix &amp; Security Requirements</td>
+<td style="text-align:left">15</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>IV.</strong></td>
+<td style="text-align:left"><strong>Screen-by-Screen UX &amp; Content Flow (The Incentivized Journey)</strong></td>
+<td style="text-align:left">16</td>
+</tr>
+<tr>
+<td style="text-align:left">4.1</td>
+<td style="text-align:left">Stage 1: The Trust &amp; Consent Block</td>
+<td style="text-align:left">16</td>
+</tr>
+<tr>
+<td style="text-align:left">4.2</td>
+<td style="text-align:left">Stage 2: The Core Data Submission (Credit &amp; Cashflow)</td>
+<td style="text-align:left">19</td>
+</tr>
+<tr>
+<td style="text-align:left">4.3</td>
+<td style="text-align:left">Stage 3: Assets, Liabilities, &amp; Behavior Questions</td>
+<td style="text-align:left">23</td>
+</tr>
+<tr>
+<td style="text-align:left">4.4</td>
+<td style="text-align:left">Stage 4: Profile Submission &amp; Reward Allocation</td>
+<td style="text-align:left">27</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>V.</strong></td>
+<td style="text-align:left"><strong>The AI Engine: Alternative Credit Score (ACS) Logic Breakdown</strong></td>
+<td style="text-align:left">29</td>
+</tr>
+<tr>
+<td style="text-align:left">5.1</td>
+<td style="text-align:left">Model 1: Credit History &amp; Behavior Score (CHBS)</td>
+<td style="text-align:left">30</td>
+</tr>
+<tr>
+<td style="text-align:left">5.2</td>
+<td style="text-align:left">Model 2: Cashflow &amp; Spending Patterns (CSP)</td>
+<td style="text-align:left">32</td>
+</tr>
+<tr>
+<td style="text-align:left">5.3</td>
+<td style="text-align:left">Model 3: Assets &amp; Resilience Score (ARS)</td>
+<td style="text-align:left">34</td>
+</tr>
+<tr>
+<td style="text-align:left">5.4</td>
+<td style="text-align:left">Model 4: Liability Prioritization Engine (LPE)</td>
+<td style="text-align:left">36</td>
+</tr>
+<tr>
+<td style="text-align:left">5.5</td>
+<td style="text-align:left">The Final Alternative Credit Score (ACS) Formula</td>
+<td style="text-align:left">38</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>VI.</strong></td>
+<td style="text-align:left"><strong>The Eligibility Gate: Decision Matrix &amp; Routing</strong></td>
+<td style="text-align:left">40</td>
+</tr>
+<tr>
+<td style="text-align:left">6.1</td>
+<td style="text-align:left">The Three-Factor Eligibility Rule</td>
+<td style="text-align:left">40</td>
+</tr>
+<tr>
+<td style="text-align:left">6.2</td>
+<td style="text-align:left">Outcome A: Membership-Eligible User Routing</td>
+<td style="text-align:left">41</td>
+</tr>
+<tr>
+<td style="text-align:left">6.3</td>
+<td style="text-align:left">Outcome B: Counseling-First User Routing</td>
+<td style="text-align:left">42</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>VII.</strong></td>
+<td style="text-align:left"><strong>Post-Profiling Outputs &amp; Conclusion</strong></td>
+<td style="text-align:left">44</td>
+</tr>
+<tr>
+<td style="text-align:left">7.1</td>
+<td style="text-align:left">The Personal Financial Report (PFR) Detail</td>
+<td style="text-align:left">44</td>
+</tr>
+<tr>
+<td style="text-align:left">7.2</td>
+<td style="text-align:left">Final Summary and Key Performance Indicators (KPIs)</td>
+<td style="text-align:left">46</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h1 id="i-strategic-mandate--pillar-goals"><strong>I. Strategic Mandate &amp; Pillar Goals</strong></h1>
+<h2 id="11-strategic-mandate-the-360%C2%B0-profile"><strong>1.1 Strategic Mandate: The 360° Profile</strong></h2>
+<p>The strategic mandate of the <strong>User Onboarding &amp; AI Financial Profiling</strong> pillar is to solve the dual problem articulated in the Product Concept Note: <strong>Limited Access to Credit</strong> and <strong>Poor Financial Visibility &amp; Guidance</strong> (P1).</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Strategic Goal</th>
+<th style="text-align:left">Problem Addressed</th>
+<th style="text-align:left">Pillar 1 Solution</th>
+<th style="text-align:left">Core Technology</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>Credit Inclusion</strong></td>
+<td style="text-align:left">The &quot;credit-invisible&quot; lack formal documentation, leading to complete exclusion from formal credit (P4, P5).</td>
+<td style="text-align:left"><strong>AI-Driven Financial Profiling</strong> (P1): Assesses creditworthiness based on <em>cash flow</em> and <em>asset ownership</em> (P5).</td>
+<td style="text-align:left">Alternative Credit Score (ACS) Model</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Debt Spiral Prevention</strong></td>
+<td style="text-align:left">Late fees, penalties, and high-interest short-term borrowing cause credit score damage (P1, P4).</td>
+<td style="text-align:left"><strong>Liability Prioritization Engine</strong> (P10): Determines the most damaging liability to clear first with the Short-Term Interest-Free Credit (P2).</td>
+<td style="text-align:left">Liability Prioritization Engine (LPE)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Behavioral Change</strong></td>
+<td style="text-align:left">Nearly 45% of Indians have never checked their credit score. Lack of visibility makes budgeting and debt consolidation hard (P1).</td>
+<td style="text-align:left"><strong>Personal Financial Report (PFR)</strong> (P11): Provides a simple, visual diagnosis of financial health, setting the stage for advisory.</td>
+<td style="text-align:left">Cashflow &amp; Spending Patterns Model (CSP)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="goal-of-user-onboarding"><strong>Goal of User Onboarding</strong></h3>
+<p>To achieve $\mathbf{100%}$ data integrity and $\mathbf{&gt;65%}$ conversion rate for the full profile submission through a secure, incentivized, and transparent process, thereby mitigating data scarcity and high acquisition cost risks (P5).</p>
+<h3 id="goal-of-ai-financial-profiling"><strong>Goal of AI Financial Profiling</strong></h3>
+<p>To generate an $\mathbf{ACS}$ that is $\mathbf{&gt;15%}$ more predictive of $\mathbf{90+ DPD}$ default risk for the target cohorts (gig workers, students) than the traditional CIBIL/Experian score alone, by incorporating alternative data.</p>
+<h2 id="12-success-metrics--kpis-for-pillar-1"><strong>1.2 Success Metrics &amp; KPIs for Pillar 1</strong></h2>
+<p>The success of the entire program hinges on the metrics defined below.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Metric</th>
+<th style="text-align:left">Definition</th>
+<th style="text-align:left">Target Goal (Pilot Phase)</th>
+<th style="text-align:left">Owner</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>Full Profile Conversion Rate</strong></td>
+<td style="text-align:left">(% of users who complete all 4 Stages / % of users who start Stage 1).</td>
+<td style="text-align:left"><strong>&gt;65%</strong></td>
+<td style="text-align:left">PM, UXD</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>API Adoption Rate</strong></td>
+<td style="text-align:left">(% of users who successfully link via AA/Bureau API / Total users).</td>
+<td style="text-align:left"><strong>&gt;80%</strong></td>
+<td style="text-align:left">TL, PM</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Document Integrity Score (DIS) Avg.</strong></td>
+<td style="text-align:left">Average score from the Document Tampering Algorithm (1.3.4).</td>
+<td style="text-align:left"><strong>&gt;95/100</strong></td>
+<td style="text-align:left">AI/ML, CRA</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>OCR Accuracy</strong></td>
+<td style="text-align:left">Accuracy of parsing key data fields (e.g., transaction amount) from manual uploads.</td>
+<td style="text-align:left"><strong>&gt;98%</strong></td>
+<td style="text-align:left">AI/ML</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Non-Credit Cost-to-Serve (CTS) Reduction</strong></td>
+<td style="text-align:left">Reduction in human time spent on manual data entry/verification.</td>
+<td style="text-align:left"><strong>&gt;70%</strong></td>
+<td style="text-align:left">Operations Head</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>ACS Predictive Power</strong></td>
+<td style="text-align:left">AUC (Area Under the Curve) score for ACS predicting $\mathbf{90+ DPD}$.</td>
+<td style="text-align:left"><strong>AUC &gt; 0.75</strong> (on pilot data)</td>
+<td style="text-align:left">DS, CRA</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Counseling-First Engagement Rate</strong></td>
+<td style="text-align:left">(% of non-eligible users who complete the first 3 counseling modules).</td>
+<td style="text-align:left"><strong>&gt;50%</strong></td>
+<td style="text-align:left">PM, Operations Head</td>
+</tr>
+</tbody>
+</table>
+<h2 id="13-target-user-profile-initial-pilot-focus"><strong>1.3 Target User Profile (Initial Pilot Focus)</strong></h2>
+<p>The entire flow is optimized for the strategic pilot cohorts: <strong>Urban Low-Income Earners (Gig Economy)</strong> and <strong>Young Individuals &amp; Students</strong> (P8).</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Attribute</th>
+<th style="text-align:left">Urban Low-Income Earners (Gig)</th>
+<th style="text-align:left">Young Individuals &amp; Students</th>
+<th style="text-align:left">Onboarding Optimization</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>Financial Challenge</strong></td>
+<td style="text-align:left">Income volatility, irregular/daily/weekly income (P4).</td>
+<td style="text-align:left">Thin credit file, credit naivety, poor financial habits (P6).</td>
+<td style="text-align:left">Focus on <em>Cashflow</em> data; gamified advice.</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Digital Acumen</strong></td>
+<td style="text-align:left">High smartphone penetration, reliance on apps (P4).</td>
+<td style="text-align:left">Highly tech-savvy, digitally native (P6).</td>
+<td style="text-align:left"><strong>Prioritize API/Digital Acquisition</strong> (Low Acquisition Cost) (P8).</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Data Richness</strong></td>
+<td style="text-align:left">Alternative Data Rich: Platform earnings, location data (P4).</td>
+<td style="text-align:left">Thin File Problem (Limited credit history) (P6).</td>
+<td style="text-align:left"><strong>OCR/Manual Upload</strong> must be robust for non-AA data.</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Engagement</strong></td>
+<td style="text-align:left">High Churn risk if membership fee/credit is insufficient (P4).</td>
+<td style="text-align:left">High Engagement potential with AI/Gamification (P6).</td>
+<td style="text-align:left"><strong>Incentivized Flow &amp; Instant Reward</strong> upon completion (P10).</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h1 id="ii-the-onboarding-funnel-high-level-flow--decision-tree"><strong>II. The Onboarding Funnel: High-Level Flow &amp; Decision Tree</strong></h1>
+<p>The onboarding is a <strong>Non-Linear, Incentivized Guided Journey</strong> designed to secure maximum data at minimum cost while building trust.</p>
+<h2 id="21-the-4-stage-onboarding-flow"><strong>2.1 The 4-Stage Onboarding Flow</strong></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Stage</th>
+<th style="text-align:left">Goal</th>
+<th style="text-align:left">Key Activity</th>
+<th style="text-align:left">Output for AI</th>
+<th style="text-align:left">Incentivization Model</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>Stage 1: Trust &amp; Vetting</strong></td>
+<td style="text-align:left">Establish trust, confirm target user criteria, secure KYC &amp; Consent.</td>
+<td style="text-align:left">KYC (PAN/Aadhaar) submission, Target Score Check (&lt;750), Data Privacy Consent.</td>
+<td style="text-align:left">KYC Data, Initial Score Check.</td>
+<td style="text-align:left"><strong>Voucher/Bonus</strong> for Consent (e.g., ₹50 mobile recharge voucher).</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Stage 2: Core Data Submission</strong></td>
+<td style="text-align:left">Ingest the highest-value data (Cashflow &amp; Credit History).</td>
+<td style="text-align:left">API: Account Aggregator (AA) linking $\mathbf{OR}$ Manual Upload/OCR of Bank Statements (P10). API: Credit Bureau Report Pull (P10).</td>
+<td style="text-align:left">Raw Transactions (12M), Official Credit Report.</td>
+<td style="text-align:left"><strong>High Point Allocation</strong> for AA linking/OCR processing (P10).</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Stage 3: Profiling Data (Guided Input)</strong></td>
+<td style="text-align:left">Collect high-context, low-friction data points on assets, liabilities, and behavior.</td>
+<td style="text-align:left">Short, guided questions on assets (FD, Property), secondary liabilities (fines, utility bills), and financial behavior.</td>
+<td style="text-align:left">Assets/Investment Data, Secondary Liability Data, Behavioral Flags.</td>
+<td style="text-align:left"><strong>Bonus Points</strong> for each completed section.</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Stage 4: AI Processing &amp; Decision</strong></td>
+<td style="text-align:left">The back-end runs the AI models and generates the final user output.</td>
+<td style="text-align:left"><strong>User Wait Screen</strong> (5-10 seconds) while 4 models run (P3). <strong>AI Model Run:</strong> OCR, CHBS, CSP, ARS, LPE, ACS.</td>
+<td style="text-align:left">Alternative Credit Score (ACS), Personal Financial Report (PFR), Eligibility Decision.</td>
+<td style="text-align:left"><strong>Final Joining Bonus</strong> (can be applied to Membership Fee/First Liability) (P10).</td>
+</tr>
+</tbody>
+</table>
+<h2 id="22-key-decision-point-api-vs-manual-input"><strong>2.2 Key Decision Point: API vs. Manual Input</strong></h2>
+<p>This decision point is crucial for the <strong>Digital Accessibility</strong> of the program (P4). The UX must <em>strongly</em> guide the user to the API path, while the Manual path must be robust and secure.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Decision Path</th>
+<th style="text-align:left">Interaction Flow</th>
+<th style="text-align:left">Goal</th>
+<th style="text-align:left">Handoff</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>API Path (Preferred)</strong></td>
+<td style="text-align:left">User selects AA/Bureau $\rightarrow$ Consent Screen $\rightarrow$ OTP/Verification $\rightarrow$ Data fetched seamlessly.</td>
+<td style="text-align:left"><strong>Efficiency &amp; Data Quality:</strong> Highest quality, structured data immediately. Highest Acquisition Efficiency (P4).</td>
+<td style="text-align:left"><strong>Raw Transactions (Structured JSON)</strong> to CSP Model.</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Manual Path (Fallback)</strong></td>
+<td style="text-align:left">User selects Manual $\rightarrow$ Guided Upload Wizard for Bank Statements/Bills/Credit Report (PDF/Image).</td>
+<td style="text-align:left"><strong>Inclusion &amp; Resilience:</strong> Caters to low digital literacy and non-AA-compliant documents.</td>
+<td style="text-align:left"><strong>Raw Documents (PDF/Image)</strong> to OCR/Parsing Engine (P10, P12).</td>
+</tr>
+</tbody>
+</table>
+<h2 id="23-key-decision-point-eligible-vs-counseling-first"><strong>2.3 Key Decision Point: Eligible vs. Counseling-First</strong></h2>
+<p>This is the final outcome of Pillar 1, powered by the AI Engine.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Outcome Path</th>
+<th style="text-align:left">ACS Trigger</th>
+<th style="text-align:left">Initial Offering</th>
+<th style="text-align:left">Goal of Routing</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>Outcome A: Membership-Eligible</strong></td>
+<td style="text-align:left">Profile indicates <strong>positive cashflow potential</strong> and <strong>limited/resolvable delinquencies</strong> (P11).</td>
+<td style="text-align:left">Access to <strong>Liability-Free (0% interest) Credit</strong> and Free/Paid Membership Tiers (P11).</td>
+<td style="text-align:left"><strong>Credit Graduation:</strong> Start structured repayment and build credit score (P2, P6).</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Outcome B: Counseling-First</strong></td>
+<td style="text-align:left">Profile indicates <strong>chronic defaults, severe instability, or unsustainable repayment capacity</strong> (P11).</td>
+<td style="text-align:left"><strong>Human Financial Counseling</strong> and Content Flywheel (P11). <strong>NO Credit</strong> is extended (P11).</td>
+<td style="text-align:left"><strong>De-risking &amp; Re-engagement:</strong> Stabilize behavior, control expenses, prepare for future eligibility (P11, P12).</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h1 id="iii-data-collection-strategy--technical-specifications"><strong>III. Data Collection Strategy &amp; Technical Specifications</strong></h1>
+<p>This section outlines the exact data fields required, their source, and the technical method of collection.</p>
+<h2 id="31-strategy-a-account-aggregator-aa-api-data-ingestion"><strong>3.1 Strategy A: Account Aggregator (AA) API Data Ingestion</strong></h2>
+<p>This is the primary data source for <strong>Cashflow &amp; Spending Patterns (CSP)</strong> and must cover a minimum of <strong>12 months</strong> of data (24 months preferred).</p>
+<h3 id="aa-api-specification-get-financial-transactions"><strong>AA API Specification: <code>GET /financial-transactions</code></strong></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Field Name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Data Requirement</th>
+<th style="text-align:left">Purpose in AI Model</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong><code>transaction_date</code></strong></td>
+<td style="text-align:left">Date/Time</td>
+<td style="text-align:left">$\mathbf{12 M}$ lookback, normalized to UTC.</td>
+<td style="text-align:left">Income Volatility Index (IVI) calculation (5.2).</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>transaction_amount</code></strong></td>
+<td style="text-align:left">Numeric</td>
+<td style="text-align:left">Absolute value in INR. Must be separated by Cr/Dr.</td>
+<td style="text-align:left">Surplus/Deficit Metrics (5.2).</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>transaction_type</code></strong></td>
+<td style="text-align:left">Enum (CREDIT/DEBIT)</td>
+<td style="text-align:left">Essential for income/expense categorization.</td>
+<td style="text-align:left">Spending Patterns (Essential vs. Discretionary) (P1).</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>transaction_narration</code></strong></td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">Bank description (e.g., &quot;NEFT to LENDER_X&quot;).</td>
+<td style="text-align:left"><strong>Lender Identification</strong> (Input to LPE) and income source verification.</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>account_balance</code></strong></td>
+<td style="text-align:left">Numeric</td>
+<td style="text-align:left">End-of-day balance.</td>
+<td style="text-align:left"><strong>Low Savings Flag</strong> (5.2) and Asset Verification (5.3).</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>loan_repayment_flag</code></strong></td>
+<td style="text-align:left">Boolean (Internal Logic)</td>
+<td style="text-align:left">Flag transactions matching known EMI amounts/lender names.</td>
+<td style="text-align:left"><strong>Track Discipline</strong> (Input to CHBS) (5.1).</td>
+</tr>
+</tbody>
+</table>
+<h2 id="32-strategy-b-credit-bureau-api-data-ingestion"><strong>3.2 Strategy B: Credit Bureau API Data Ingestion</strong></h2>
+<p>This is the primary data source for <strong>Credit History &amp; Behavior Score (CHBS)</strong> (P1). Collection is mandatory via API pull (Task 1.3.5) upon user consent.</p>
+<h3 id="bureau-api-specification-get-credit-report"><strong>Bureau API Specification: <code>GET /credit-report</code></strong></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Field Name</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Data Requirement</th>
+<th style="text-align:left">Purpose in AI Model</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong><code>credit_score_trad</code></strong></td>
+<td style="text-align:left">Integer</td>
+<td style="text-align:left">The traditional CIBIL/Experian score.</td>
+<td style="text-align:left">Input to ACS Formula (P11), Eligibility Gate (P11).</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>total_outstanding_loan</code></strong></td>
+<td style="text-align:left">Numeric</td>
+<td style="text-align:left">Total principal amount across all accounts.</td>
+<td style="text-align:left">Debt-to-Income (DTI) Ratio, LPE (5.4).</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>days_past_due_matrix</code></strong></td>
+<td style="text-align:left">Array</td>
+<td style="text-align:left">List of DPD flags (30, 60, 90+) for all loans (24M history).</td>
+<td style="text-align:left">Core of Behavior Score (5.1).</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>credit_utilization_ratio</code></strong></td>
+<td style="text-align:left">Percentage</td>
+<td style="text-align:left">Ratio of credit used to total limit across all cards/lines.</td>
+<td style="text-align:left"><strong>High Utilization Risk</strong> flag (P10, 5.1).</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>age_of_oldest_account</code></strong></td>
+<td style="text-align:left">Integer (Months)</td>
+<td style="text-align:left">Time since the first credit account was opened.</td>
+<td style="text-align:left">Credit History Depth (5.1).</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><code>enquiry_count_6m</code></strong></td>
+<td style="text-align:left">Integer</td>
+<td style="text-align:left">Number of hard inquiries in the last 6 months.</td>
+<td style="text-align:left"><strong>Credit Hunger</strong> flag (P10, 5.1).</td>
+</tr>
+</tbody>
+</table>
+<h2 id="33-strategy-c-user-input-data--guided-questionnaires"><strong>3.3 Strategy C: User-Input Data &amp; Guided Questionnaires</strong></h2>
+<p>This data is collected via guided, high-context screens (Stage 3) to fill critical gaps not covered by APIs.</p>
+<h3 id="user-input-specification-guided-wizard"><strong>User-Input Specification: Guided Wizard</strong></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Question / Input Field</th>
+<th style="text-align:left">Interaction Type</th>
+<th style="text-align:left">Data Type</th>
+<th style="text-align:left">Purpose in AI Model</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>Employment Type</strong></td>
+<td style="text-align:left">Multi-Select/Search</td>
+<td style="text-align:left">Enum (Gig/Salaried/Self-Employed/Student)</td>
+<td style="text-align:left">IVI Expectation Setting (5.2).</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Platform Earning Verification (Gig)</strong></td>
+<td style="text-align:left">Text Input / Platform Login (Optional)</td>
+<td style="text-align:left">String (Platform name)</td>
+<td style="text-align:left">Alternative Income Source Check (5.2).</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Secondary Liabilities (Unreported)</strong></td>
+<td style="text-align:left">Guided List</td>
+<td style="text-align:left">String/Numeric</td>
+<td style="text-align:left">Utility bills, credit card minimums, pending fines (LPE Input) (P2, P10).</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Asset Ownership: Property</strong></td>
+<td style="text-align:left">Yes/No $\rightarrow$ Upload Proof</td>
+<td style="text-align:left">Boolean/Document</td>
+<td style="text-align:left">Resilience Score (5.3).</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Asset Ownership: Insurance/FD</strong></td>
+<td style="text-align:left">Yes/No $\rightarrow$ Upload Proof</td>
+<td style="text-align:left">Boolean/Document</td>
+<td style="text-align:left">Resilience Score (5.3).</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Financial Literacy Self-Assessment</strong></td>
+<td style="text-align:left">3-Question Quiz (Internal)</td>
+<td style="text-align:left">Integer Score (1-10)</td>
+<td style="text-align:left">Behavior Flag for Counseling Path (6.3).</td>
+</tr>
+</tbody>
+</table>
+<h2 id="34-strategy-d-ocr--document-processing-the-fallback"><strong>3.4 Strategy D: OCR &amp; Document Processing (The Fallback)</strong></h2>
+<p>For the 20% of users who cannot use the AA API, this system converts their manual uploads into the required structured data format (3.1).</p>
+<h3 id="ocr-extraction-specification-required-fields-mandatory-for-compliance"><strong>OCR Extraction Specification: Required Fields (Mandatory for Compliance)</strong></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Document Type</th>
+<th style="text-align:left">Mandatory Fields for Extraction</th>
+<th style="text-align:left">OCR Tooling Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>Bank Statements (PDF/Image)</strong></td>
+<td style="text-align:left">Account Holder Name, Statement Date Range, <strong>All Transactions (Date, Amount, Narration)</strong>.</td>
+<td style="text-align:left">Advanced Indian Fintech OCR (Perfios/Glib.ai-level) (P10).</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Loan Schedules (PDF/Image)</strong></td>
+<td style="text-align:left">Lender Name, Loan Amount, <strong>Monthly EMI Value</strong>, <strong>Next Due Date</strong>.</td>
+<td style="text-align:left">Advanced Table/Schema-less Parsing.</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Identity/KYC Proofs (PAN/Aadhaar)</strong></td>
+<td style="text-align:left">Name, Date of Birth, Address, Document ID.</td>
+<td style="text-align:left">Basic Image-to-Text OCR (for data verification).</td>
+</tr>
+</tbody>
+</table>
+<h2 id="35-mandatory-data-matrix--security-requirements"><strong>3.5 Mandatory Data Matrix &amp; Security Requirements</strong></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Data Set</th>
+<th style="text-align:left">Collection Method</th>
+<th style="text-align:left">Mandatory Field Count</th>
+<th style="text-align:left">Security Requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>KYC &amp; Identity</strong></td>
+<td style="text-align:left">User Input/OCR</td>
+<td style="text-align:left">4</td>
+<td style="text-align:left"><strong>Encryption at Rest (AES-256)</strong>, Masking in UAT/Staging.</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Credit Report</strong></td>
+<td style="text-align:left">Bureau API</td>
+<td style="text-align:left">6</td>
+<td style="text-align:left"><strong>Tokenized Access</strong>, Regulatory Audit Trail (P10).</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Cashflow (12M)</strong></td>
+<td style="text-align:left">AA API/OCR</td>
+<td style="text-align:left">5</td>
+<td style="text-align:left"><strong>Anonymization for Model Training</strong>, Consent Logging (P11).</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Assets &amp; Resilience</strong></td>
+<td style="text-align:left">User Input/OCR</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left"><strong>Two-Factor Verification</strong> for sensitive uploads.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h1 id="iv-screen-by-screen-ux--content-flow-the-incentivized-journey"><strong>IV. Screen-by-Screen UX &amp; Content Flow (The Incentivized Journey)</strong></h1>
+<p>This section details the exact user interface (UI) and content for the non-linear, 4-Stage Onboarding flow, ensuring a supportive and highly engaging experience (P12, P15).</p>
+<h2 id="41-stage-1-the-trust--consent-block-5-minutes"><strong>4.1 Stage 1: The Trust &amp; Consent Block (5 Minutes)</strong></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Screen ID</th>
+<th style="text-align:left">Screen Title &amp; Goal</th>
+<th style="text-align:left">User Interaction</th>
+<th style="text-align:left">Key Content/Tone</th>
+<th style="text-align:left">Handoff/Next Step</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>S1.1</strong></td>
+<td style="text-align:left"><strong>Welcome &amp; Value Proposition</strong> <strong>Goal:</strong> Confirm the user is a target cohort and communicate the 360° benefit.</td>
+<td style="text-align:left">Single Button: &quot;Start My Financial Profile&quot;</td>
+<td style="text-align:left"><strong>Headline:</strong> &quot;Move Beyond Your Credit Score. Get Rewarded for Your Resilience.&quot; <strong>Body:</strong> &quot;If your score is below 750 or you are new to credit, we can help. Our AI builds a 360° profile to find credit you deserve.&quot;</td>
+<td style="text-align:left">S1.2</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>S1.2</strong></td>
+<td style="text-align:left"><strong>KYC &amp; Identity Verification</strong> <strong>Goal:</strong> Collect mandatory KYC/AML data.</td>
+<td style="text-align:left">1. PAN/Aadhaar Upload (Image/PDF). 2. OTP Verification via Aadhaar-linked phone.</td>
+<td style="text-align:left"><strong>Headline:</strong> &quot;First Step: The Trust Block.&quot; <strong>Note:</strong> &quot;This is mandatory for all formal financial services in India.&quot;</td>
+<td style="text-align:left">S1.3</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>S1.3</strong></td>
+<td style="text-align:left"><strong>Data Consent &amp; Privacy</strong> <strong>Goal:</strong> Secure legal consent for data sharing/processing and build trust.</td>
+<td style="text-align:left">Checkbox: &quot;I consent to [BadeBhaiSaab] securely processing my financial data...&quot; $\rightarrow$ Button: &quot;I Understand &amp; Consent (Earn ₹50 Bonus!)&quot;</td>
+<td style="text-align:left"><strong>Headline:</strong> &quot;Why We Need Your Full Picture.&quot; <strong>Body:</strong> &quot;We use advanced encryption. Your data is never sold. We only use it to give you the best advice and 0% interest credit.&quot; (P11, P15)</td>
+<td style="text-align:left">Trigger <strong>₹50 Mobile Recharge Voucher</strong>. S2.1</td>
+</tr>
+</tbody>
+</table>
+<h2 id="42-stage-2-the-core-data-submission-credit--cashflow-8-10-minutes"><strong>4.2 Stage 2: The Core Data Submission (Credit &amp; Cashflow) (8-10 Minutes)</strong></h2>
+<p>This is the most critical stage, where $\sim 80%$ of the AI input data is collected.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Screen ID</th>
+<th style="text-align:left">Screen Title &amp; Goal</th>
+<th style="text-align:left">User Interaction</th>
+<th style="text-align:left">Key Content/Tone</th>
+<th style="text-align:left">Handoff/Next Step</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>S2.1</strong></td>
+<td style="text-align:left"><strong>The Profile Checklist &amp; Reward Preview</strong> <strong>Goal:</strong> Show the user what's left and incentivize the most complex steps.</td>
+<td style="text-align:left">Progress Bar (30% Complete). Dynamic List with points: <strong>Link Bank (500 pts)</strong>, <strong>Link Credit (300 pts)</strong>, etc.</td>
+<td style="text-align:left"><strong>Headline:</strong> &quot;Your Road to the Final Offer.&quot; <strong>Tip:</strong> &quot;Linking your accounts via API is 5X faster and earns the most rewards!&quot; (P10)</td>
+<td style="text-align:left">S2.2</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>S2.2</strong></td>
+<td style="text-align:left"><strong>Credit Report Integration</strong> <strong>Goal:</strong> Get the official Credit History Data (Task 1.3.5).</td>
+<td style="text-align:left"><strong>Option A (Preferred):</strong> API Login (via partner or OTP). <strong>Option B (Fallback):</strong> Upload CIBIL/Experian PDF.</td>
+<td style="text-align:left"><strong>Headline:</strong> &quot;Get Credit for Your Past Discipline.&quot; <strong>Prompt:</strong> &quot;To understand your credit journey, we pull your official score.&quot;</td>
+<td style="text-align:left">S2.3 (API success $\rightarrow$ S2.4)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>S2.3</strong></td>
+<td style="text-align:left"><strong>Cashflow Data: API Preference</strong> <strong>Goal:</strong> Strongly encourage AA linking.</td>
+<td style="text-align:left"><strong>Option A (Preferred):</strong> Button: &quot;Link Bank Accounts Securely (500 Points!)&quot; $\rightarrow$ AA Flow. <strong>Option B (Fallback):</strong> Button: &quot;Upload Bank Statements (PDFs)&quot;</td>
+<td style="text-align:left"><strong>Headline:</strong> &quot;Your Income &amp; Spending: The True Measure.&quot; <strong>Body:</strong> &quot;Traditional scores ignore your cashflow. We need 12-24 months of data to find your true potential.&quot; (P1, P11)</td>
+<td style="text-align:left">S2.4</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>S2.4</strong></td>
+<td style="text-align:left"><strong>Manual Upload Wizard (If S2.3 Option B)</strong> <strong>Goal:</strong> Reduce friction and capture clean OCR data.</td>
+<td style="text-align:left"><strong>Wizard:</strong> 1. Select Bank Name. 2. Upload PDF. 3. Confirm Date Range. (Repeat for 2-3 accounts).</td>
+<td style="text-align:left"><strong>Headline:</strong> &quot;Uploading Documents (Automated Scan).&quot; <strong>Note:</strong> &quot;Our AI will read these documents for you. Please use clear PDF files only.&quot; (P10)</td>
+<td style="text-align:left">S3.1</td>
+</tr>
+</tbody>
+</table>
+<h2 id="43-stage-3-assets-liabilities--behavior-questions-6-8-minutes"><strong>4.3 Stage 3: Assets, Liabilities, &amp; Behavior Questions (6-8 Minutes)</strong></h2>
+<p>This stage collects high-context data that powers the <strong>Resilience Score</strong> and the <strong>Liability Prioritization Engine</strong>.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Screen ID</th>
+<th style="text-align:left">Screen Title &amp; Goal</th>
+<th style="text-align:left">User Interaction</th>
+<th style="text-align:left">Key Content/Tone</th>
+<th style="text-align:left">Handoff/Next Step</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>S3.1</strong></td>
+<td style="text-align:left"><strong>Financial Resilience: Assets</strong> <strong>Goal:</strong> Collect non-traditional asset data (Task 1.4.3).</td>
+<td style="text-align:left"><strong>Guided Question Tree:</strong> 1. &quot;Do you have any Fixed Deposits, RDs, or Gold?&quot; (Y/N). 2. &quot;Do you have any Life or Health Insurance policies?&quot; (Y/N). 3. &quot;Do you own property?&quot; (Y/N) $\rightarrow$ If Yes, &quot;Upload Proof (Optional, for higher limit).&quot;</td>
+<td style="text-align:left"><strong>Headline:</strong> &quot;Show Us Your Safety Net (100 Bonus Points).&quot; <strong>Tip:</strong> &quot;Assets like insurance show financial discipline and can unlock higher limits.&quot; (P15)</td>
+<td style="text-align:left">S3.2</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>S3.2</strong></td>
+<td style="text-align:left"><strong>Secondary Liabilities &amp; Fines</strong> <strong>Goal:</strong> Capture liabilities <em>not</em> reported on the credit bureau (P2, P10).</td>
+<td style="text-align:left"><strong>Guided Input:</strong> 1. Input: &quot;Pending Electricity/Water Bills.&quot; 2. Input: &quot;Unpaid Phone/Internet Bills.&quot; 3. Input: &quot;Outstanding Credit Card Minimum Payments.&quot;</td>
+<td style="text-align:left"><strong>Headline:</strong> &quot;Let's Prioritize the Small, Damaging Debts.&quot; <strong>Note:</strong> &quot;Fines and late fees quickly damage your score. Tell us the amount so we can clear them first.&quot;</td>
+<td style="text-align:left">S3.3</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>S3.3</strong></td>
+<td style="text-align:left"><strong>Behavior &amp; Literacy Self-Assessment</strong> <strong>Goal:</strong> Collect a subjective Behavior Flag for counseling/advisory.</td>
+<td style="text-align:left"><strong>3-Question Quiz:</strong> 1. &quot;How often do you budget?&quot; (Never/Monthly/Weekly). 2. &quot;I know my exact credit card interest rate.&quot; (True/False). 3. &quot;Do you frequently use savings for unexpected bills?&quot; (Y/N).</td>
+<td style="text-align:left"><strong>Headline:</strong> &quot;A Quick Pulse Check on Your Habits.&quot; <strong>Note:</strong> &quot;There are no wrong answers! This helps our AI give you the right advice.&quot;</td>
+<td style="text-align:left">S4.1</td>
+</tr>
+</tbody>
+</table>
+<h2 id="44-stage-4-profile-submission--reward-allocation-1-minute"><strong>4.4 Stage 4: Profile Submission &amp; Reward Allocation (1 Minute)</strong></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Screen ID</th>
+<th style="text-align:left">Screen Title &amp; Goal</th>
+<th style="text-align:left">User Interaction</th>
+<th style="text-align:left">Key Content/Tone</th>
+<th style="text-align:left">Handoff/Next Step</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>S4.1</strong></td>
+<td style="text-align:left"><strong>Final Submission &amp; Review</strong> <strong>Goal:</strong> Confirm all data, start AI processing, and manage the user's wait time.</td>
+<td style="text-align:left">Button: &quot;Submit My Full Profile &amp; Get My Offer&quot;</td>
+<td style="text-align:left"><strong>Headline:</strong> &quot;Submission Complete. Your AI Profile is Building...&quot; <strong>Wait Screen:</strong> <em>Animated graphic</em> showing data points converging into a 360° profile. (Max 10-second wait time).</td>
+<td style="text-align:left">S4.2 (Decision)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>S4.2</strong></td>
+<td style="text-align:left"><strong>Reward Allocation &amp; Next Step</strong> <strong>Goal:</strong> Pay the final bonus and route the user to the appropriate outcome (A or B).</td>
+<td style="text-align:left">Dynamic Text $\rightarrow$ Button: &quot;View My Personal Financial Report&quot;</td>
+<td style="text-align:left"><strong>Success Banner:</strong> &quot;Congratulations! You earned $\mathbf{1,200}$ Reward Points. Your initial offer is ready.&quot; <strong>Dynamic Content:</strong> <em>Content shifts based on the Eligibility Gate (VI).</em></td>
+<td style="text-align:left">Outcome A $\rightarrow$ Membership Offer/PFR. Outcome B $\rightarrow$ Counseling Offer/PFR.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h1 id="v-the-ai-engine-alternative-credit-score-acs-logic-breakdown"><strong>V. The AI Engine: Alternative Credit Score (ACS) Logic Breakdown</strong></h1>
+<p>The ACS is a proprietary, weighted score (hypothetical range 100-1000) that is the core output of Pillar 1. It is the sole determinant of credit size and membership tier.</p>
+<h3 id="acs-core-principle"><strong>ACS Core Principle</strong></h3>
+<p>The ACS integrates four key models to overcome the &quot;Thin File&quot; and &quot;Income Volatility&quot; challenges of the target market (P4, P6).</p>
+<p>$$\mathbf{ACS} = f(\mathbf{CHBS}, \mathbf{CSP}, \mathbf{ARS}, \mathbf{LPE})$$</p>
+<h2 id="51-model-1-credit-history--behavior-score-chbs"><strong>5.1 Model 1: Credit History &amp; Behavior Score (CHBS)</strong></h2>
+<p><strong>Model Goal:</strong> Quantify the user's reliability and past financial discipline (P10).</p>
+<h3 id="chbs-sub-score-formula--inputs"><strong>CHBS Sub-Score Formula &amp; Inputs</strong></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">CHBS Component</th>
+<th style="text-align:left">Data Source</th>
+<th style="text-align:left">Weight (%)</th>
+<th style="text-align:left">Risk Threshold (Flag)</th>
+<th style="text-align:left">Output Score Range</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>Days Past Due (DPD)</strong></td>
+<td style="text-align:left">Bureau API (3.2)</td>
+<td style="text-align:left">40%</td>
+<td style="text-align:left">$\mathbf{&gt;90 DPD}$ in last 12M $\rightarrow$ <strong>High Risk Flag</strong></td>
+<td style="text-align:left">100-300</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Credit Utilization</strong></td>
+<td style="text-align:left">Bureau API (3.2)</td>
+<td style="text-align:left">30%</td>
+<td style="text-align:left">$\mathbf{&gt;75%}$ Utilization $\rightarrow$ <strong>Behavior Warning</strong></td>
+<td style="text-align:left">100-300</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Credit History Depth</strong></td>
+<td style="text-align:left">Bureau API (3.2)</td>
+<td style="text-align:left">15%</td>
+<td style="text-align:left">$\mathbf{&lt;24}$ Months History $\rightarrow$ <strong>Thin File Flag</strong></td>
+<td style="text-align:left">100-150</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Recent Enquiries</strong></td>
+<td style="text-align:left">Bureau API (3.2)</td>
+<td style="text-align:left">15%</td>
+<td style="text-align:left">$\mathbf{&gt;4}$ Hard Inquiries in 6M $\rightarrow$ <strong>Credit Hunger Flag</strong></td>
+<td style="text-align:left">100-150</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Total CHBS Score</strong></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><strong>100%</strong></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><strong>400-900</strong></td>
+</tr>
+</tbody>
+</table>
+<h2 id="52-model-2-cashflow--spending-patterns-csp"><strong>5.2 Model 2: Cashflow &amp; Spending Patterns (CSP)</strong></h2>
+<p><strong>Model Goal:</strong> Assess current income stability, <em>ability to pay</em>, and capacity for a short-term liability (P1, P10).</p>
+<h3 id="csp-sub-score-formula--inputs"><strong>CSP Sub-Score Formula &amp; Inputs</strong></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">CSP Component</th>
+<th style="text-align:left">Data Source</th>
+<th style="text-align:left">Calculation Logic</th>
+<th style="text-align:left">Risk Threshold (Flag)</th>
+<th style="text-align:left">Output Score Range</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>Income Volatility Index (IVI)</strong></td>
+<td style="text-align:left">AA/OCR (3.1)</td>
+<td style="text-align:left">$\mathbf{StDev(Monthly Income) / Avg(Monthly Income)}$.</td>
+<td style="text-align:left">$\mathbf{IVI &gt; 0.6}$ (High Volatility) $\rightarrow$ <strong>Pilot Risk Flag</strong></td>
+<td style="text-align:left">100-300</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Monthly Cashflow Surplus</strong></td>
+<td style="text-align:left">AA/OCR (3.1)</td>
+<td style="text-align:left">$\mathbf{Avg(Income) - Avg(Essential Expenses + Existing EMIs)}$.</td>
+<td style="text-align:left">$\mathbf{Surplus &lt; 2 \times}$ Avg. Monthly Penalty $\rightarrow$ <strong>Repayment Strain</strong> (P11)</td>
+<td style="text-align:left">100-300</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Discretionary Spending Ratio</strong></td>
+<td style="text-align:left">AA/OCR (3.1)</td>
+<td style="text-align:left">$\mathbf{Total Discretionary Spending / Total Income}$.</td>
+<td style="text-align:left">$\mathbf{Ratio &gt; 35%}$ $\rightarrow$ <strong>Advisory Trigger</strong> (P1)</td>
+<td style="text-align:left">100-150</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Low Savings/Balance Flag</strong></td>
+<td style="text-align:left">AA/OCR (3.1)</td>
+<td style="text-align:left">Count of days in 12M where balance was $\mathbf{&lt; \mathbf{₹}500}$.</td>
+<td style="text-align:left">$\mathbf{&gt;50%}$ of days $\rightarrow$ <strong>Liquidity Crunch Flag</strong> (P1)</td>
+<td style="text-align:left">100-150</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Total CSP Score</strong></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><strong>100%</strong></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><strong>400-900</strong></td>
+</tr>
+</tbody>
+</table>
+<h2 id="53-model-3-assets--resilience-score-ars"><strong>5.3 Model 3: Assets &amp; Resilience Score (ARS)</strong></h2>
+<p><strong>Model Goal:</strong> Provide a compensating factor for credit-invisible users who demonstrate financial maturity through savings, investments, or assets (P1, P5).</p>
+<h3 id="ars-sub-score-formula--inputs"><strong>ARS Sub-Score Formula &amp; Inputs</strong></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">ARS Component</th>
+<th style="text-align:left">Data Source</th>
+<th style="text-align:left">Calculation Logic</th>
+<th style="text-align:left">Weight (%)</th>
+<th style="text-align:left">Output Score Range</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>Savings/FD Track Record</strong></td>
+<td style="text-align:left">AA/OCR/User Input (3.1, 3.3)</td>
+<td style="text-align:left">$\mathbf{Count}$ of recurring FD/RD transactions (inflow &gt; 6M).</td>
+<td style="text-align:left">40%</td>
+<td style="text-align:left">100-300</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Insurance Premium Payments</strong></td>
+<td style="text-align:left">AA/OCR/User Input (3.1, 3.3)</td>
+<td style="text-align:left">$\mathbf{Count}$ of recurring Life/Health premium debits (over 12M).</td>
+<td style="text-align:left">35%</td>
+<td style="text-align:left">100-300</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Property Ownership Flag</strong></td>
+<td style="text-align:left">User Input/Document (3.3)</td>
+<td style="text-align:left">$\mathbf{Verified}$ Flag for self-owned property (even if mortgaged).</td>
+<td style="text-align:left">25%</td>
+<td style="text-align:left">100-300</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Total ARS Score</strong></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><strong>100%</strong></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><strong>300-900</strong></td>
+</tr>
+</tbody>
+</table>
+<h2 id="54-model-4-liability-prioritization-engine-lpe"><strong>5.4 Model 4: Liability Prioritization Engine (LPE)</strong></h2>
+<p><strong>Model Goal:</strong> Identify <em>what</em> liability the interest-free credit should tackle first (P10). This is a <em>Prioritization Index</em> rather than a score.</p>
+<h3 id="lpe-index--output"><strong>LPE Index &amp; Output</strong></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">LPE Component</th>
+<th style="text-align:left">Data Source</th>
+<th style="text-align:left">Weight Factor</th>
+<th style="text-align:left">Prioritization Logic</th>
+<th style="text-align:left">Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>Credit Score Damage Index</strong></td>
+<td style="text-align:left">Bureau (3.2) &amp; User Input (3.3)</td>
+<td style="text-align:left"><strong>3X</strong></td>
+<td style="text-align:left">Highest weight to liabilities leading to $\mathbf{&gt;30 DPD}$ or collection calls (P12).</td>
+<td style="text-align:left"><strong>Priority 1 Liability (P1)</strong></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Late Fee/Penalty Multiplier</strong></td>
+<td style="text-align:left">Bureau (3.2) &amp; User Input (3.3)</td>
+<td style="text-align:left"><strong>2X</strong></td>
+<td style="text-align:left">Prioritize liabilities with $\mathbf{&gt;5%}$ late fee penalties (P2).</td>
+<td style="text-align:left"><strong>Priority 2 Liability (P2)</strong></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Repayment Capacity Fit</strong></td>
+<td style="text-align:left">CSP (5.2)</td>
+<td style="text-align:left"><strong>1X</strong></td>
+<td style="text-align:left">Liability amount must be $\mathbf{\le 80%}$ of 90-day Cashflow Surplus (P12).</td>
+<td style="text-align:left"><strong>Recommended Credit Allocation</strong> (₹5k - ₹20k) (P12)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="55-the-final-alternative-credit-score-acs-formula"><strong>5.5 The Final Alternative Credit Score (ACS) Formula</strong></h2>
+<p>The final ACS combines the three sub-scores using the strategic weighting model, where <strong>Cashflow</strong> is the dominant factor for the target cohort.</p>
+<h3 id="acs-calculation-weighted-average"><strong>ACS Calculation (Weighted Average)</strong></h3>
+<p>$$\mathbf{ACS} = (\mathbf{CHBS} \times 0.35) + (\mathbf{CSP} \times 0.50) + (\mathbf{ARS} \times 0.15)$$</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Component</th>
+<th style="text-align:left">Strategic Weighting</th>
+<th style="text-align:left">Rationale</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>Cashflow &amp; Spending Patterns (CSP)</strong></td>
+<td style="text-align:left"><strong>50%</strong></td>
+<td style="text-align:left">Highest weight to counter <em>income volatility</em> and assess <em>current capacity</em> (P4).</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Credit History &amp; Behavior Score (CHBS)</strong></td>
+<td style="text-align:left">35%</td>
+<td style="text-align:left">Traditional risk is important but secondary to current cashflow health.</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Assets &amp; Resilience Score (ARS)</strong></td>
+<td style="text-align:left">15%</td>
+<td style="text-align:left">Compensates for thin files and credits non-traditional savings discipline (P6).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="acs-action-matrix"><strong>ACS Action Matrix</strong></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">ACS Range (Hypothetical)</th>
+<th style="text-align:left">Eligibility Path</th>
+<th style="text-align:left">Initial Credit Line (LPE Output)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>&lt; 400</strong></td>
+<td style="text-align:left"><strong>Counseling-First (High Risk)</strong> (VI.3)</td>
+<td style="text-align:left">$\mathbf{₹0}$ (No credit extended) (P11)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>400 - 550</strong></td>
+<td style="text-align:left"><strong>Eligible - Silver Tier</strong> (VI.2)</td>
+<td style="text-align:left">$\mathbf{₹5,000} - \mathbf{₹10,000}$ (Modest amount) (P12)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>&gt; 550</strong></td>
+<td style="text-align:left"><strong>Eligible - Gold Tier</strong> (VI.2)</td>
+<td style="text-align:left">$\mathbf{₹10,000} - \mathbf{₹20,000}$ (Higher amount) (P12)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h1 id="vi-the-eligibility-gate-decision-matrix--routing"><strong>VI. The Eligibility Gate: Decision Matrix &amp; Routing</strong></h1>
+<p>This is the final logic step (Task 1.5.3) that routes the user to the appropriate program track based on the AI's final assessment.</p>
+<h2 id="61-the-three-factor-eligibility-rule"><strong>6.1 The Three-Factor Eligibility Rule</strong></h2>
+<p>The system does <em>not</em> rely on the ACS alone. A user must pass three simultaneous risk checks to qualify for credit.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Factor</th>
+<th style="text-align:left">AI Input Model</th>
+<th style="text-align:left">Threshold for Eligibility</th>
+<th style="text-align:left">Rationale</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>Factor 1: Credit Potential</strong></td>
+<td style="text-align:left">Final ACS (5.5)</td>
+<td style="text-align:left"><strong>ACS $\ge \mathbf{400}$</strong></td>
+<td style="text-align:left">Core measure of overall creditworthiness and discipline.</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Factor 2: Repayment Strain</strong></td>
+<td style="text-align:left">CSP (5.2) $\rightarrow$ Surplus Metric</td>
+<td style="text-align:left"><strong>Cashflow Surplus $\ge \mathbf{2 \times}$ Avg. Monthly Penalty</strong></td>
+<td style="text-align:left">Must demonstrate <em>positive cashflow potential</em> (P11) for repayment.</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Factor 3: Behavioral Risk</strong></td>
+<td style="text-align:left">CHBS (5.1) $\rightarrow$ DPD Flag</td>
+<td style="text-align:left"><strong>NO $\mathbf{&gt;90 DPD}$ in the last 6 months</strong></td>
+<td style="text-align:left">Filters out <em>chronic defaulters</em> who require intensive, non-credit-based counseling (P11).</td>
+</tr>
+</tbody>
+</table>
+<p>$$\mathbf{Membership\ Eligible} \iff (\mathbf{Factor 1: True}) \land (\mathbf{Factor 2: True}) \land (\mathbf{Factor 3: True})$$</p>
+<h2 id="62-outcome-a-membership-eligible-user-routing"><strong>6.2 Outcome A: Membership-Eligible User Routing</strong></h2>
+<p><strong>Targeted User:</strong> Demonstrates a path to solvency; needs short-term relief and behavioral guidance.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Routing Action</th>
+<th style="text-align:left">System Trigger</th>
+<th style="text-align:left">Product Handoff (Pillar 2)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>Tiering Decision</strong></td>
+<td style="text-align:left">ACS score automatically assigns Silver/Gold tier (5.5).</td>
+<td style="text-align:left"><strong>Fee Structure:</strong> Present free/paid membership tiers (P11).</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Credit Offer Generation</strong></td>
+<td style="text-align:left">LPE output is used to generate the offer.</td>
+<td style="text-align:left">$\mathbf{90-Day\ Interest-Free\ Credit\ Line}$ offered, linked to the P1 liability (P2, P12).</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>PFR Presentation</strong></td>
+<td style="text-align:left">PFR (7.1) focuses on <em>potential</em> and <em>next steps</em> (P11).</td>
+<td style="text-align:left"><strong>Conversion Logic:</strong> Clearly explains <strong>why</strong> they qualify and <strong>what improves</strong> with membership (P11).</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Messaging Tone (PFR Summary Screen):</strong></p>
+<blockquote>
+<p><em>“<strong>Great News!</strong> Based on your cashflow stability, you are <strong>Eligible</strong> for the BadeBhaiSaab program. We found a small gap in your savings, but your income is stable. Your <strong>₹8,000 Interest-Free Credit Line</strong> is ready to immediately clear your most damaging overdue fees and stop the collection calls.”</em></p>
+</blockquote>
+<h2 id="63-outcome-b-counseling-first-user-routing"><strong>6.3 Outcome B: Counseling-First User Routing</strong></h2>
+<p><strong>Targeted User:</strong> High-risk, chronic defaulters, or users with unsustainably high Debt-to-Income (DTI) ratios. <strong>NO Credit is Extended.</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Routing Action</th>
+<th style="text-align:left">System Trigger</th>
+<th style="text-align:left">Product Handoff (Pillar 3)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>Credit Lock</strong></td>
+<td style="text-align:left">The system $\mathbf{does\ not\ push\ membership\ or\ credit}$ (P11).</td>
+<td style="text-align:left"><strong>Human Financial Counseling (1:1/Small Group)</strong> is offered as the <strong>ONLY</strong> immediate solution (P11).</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>PFR Presentation</strong></td>
+<td style="text-align:left">PFR (7.1) focuses on <em>severity</em> and <em>urgent actions</em>.</td>
+<td style="text-align:left"><strong>Content Flywheel:</strong> Offer free access to the Education &amp; Gamification modules (P11, P14).</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Re-evaluation Path</strong></td>
+<td style="text-align:left">System sets a <strong>90-day cooling-off period</strong> (P12).</td>
+<td style="text-align:left"><strong>Action Plan:</strong> User is prompted to complete specific modules and upload a 90-day <em>new</em> bank statement for re-evaluation (P12).</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Messaging Tone (PFR Summary Screen):</strong></p>
+<blockquote>
+<p><em>“<strong>We're Here to Help.</strong> Our analysis shows you currently have <strong>Unsustainable Repayment Capacity</strong>. We cannot offer you credit right now, as it would worsen your debt. However, you are <strong>Eligible for FREE Human Financial Counseling</strong> to restructure your debts and begin your path to eligibility. Your 90-Day Action Plan is ready.”</em> (P11, P12)</p>
+</blockquote>
+<hr>
+<h1 id="vii-post-profiling-outputs--conclusion"><strong>VII. Post-Profiling Outputs &amp; Conclusion</strong></h1>
+<h2 id="71-the-personal-financial-report-pfr-detail"><strong>7.1 The Personal Financial Report (PFR) Detail</strong></h2>
+<p>The PFR (Task 1.5.1) is the core user-facing artifact, translating AI complexity into simplicity.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">PFR Section</th>
+<th style="text-align:left">AI Data Source</th>
+<th style="text-align:left">Visual Representation</th>
+<th style="text-align:left">Sample Output/Advice (P13)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>1. Overall Status</strong></td>
+<td style="text-align:left">ACS (5.5) / CHBS (5.1)</td>
+<td style="text-align:left">Score Dial / Status Color (Red/Amber/Green)</td>
+<td style="text-align:left">&quot;Your score is 580 (Poor). You are flagged as <strong>Medium Discipline</strong>.&quot;</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>2. Urgent Liabilities</strong></td>
+<td style="text-align:left">LPE (5.4)</td>
+<td style="text-align:left">Bar Chart: $\mathbf{P1} &gt; \mathbf{P2} &gt; \mathbf{P3}$</td>
+<td style="text-align:left">&quot;You have $\mathbf{₹10,000}$ in pending penalties/EMIs. Your 60-day overdue EMI is the most damaging.&quot; (P10)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>3. Cashflow Health</strong></td>
+<td style="text-align:left">CSP (5.2)</td>
+<td style="text-align:left">Line Graph: Income Fluctuation / Pie Chart: Spending Mix</td>
+<td style="text-align:left">&quot;Your monthly cashflow surplus is only $\mathbf{₹500}$ (P11). Your IVI is High, suggesting irregular income.&quot;</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>4. Behavioral Insight</strong></td>
+<td style="text-align:left">CSP (5.2)</td>
+<td style="text-align:left">Highlighted Transaction</td>
+<td style="text-align:left">&quot;You spent $\mathbf{₹2000}$ on dining out last month, which is $\mathbf{10%}$ of your income - consider cutting back to save for your EMI.&quot; (P13)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>5. Next Steps/Call to Action</strong></td>
+<td style="text-align:left">Eligibility Gate (6.1)</td>
+<td style="text-align:left">Single Button</td>
+<td style="text-align:left"><strong>If Eligible:</strong> &quot;Claim your Interest-Free Credit Offer.&quot; <strong>If Counseling:</strong> &quot;Book Your Free 1:1 Counseling Session.&quot; (P11)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="72-final-summary-and-key-performance-indicators-kpis"><strong>7.2 Final Summary and Key Performance Indicators (KPIs)</strong></h2>
+<p>The execution of Pillar 1 must be rigorously measured against the KPIs defined in Section 1.2. The primary metric for all engineering and data science teams is the <strong>Full Profile Conversion Rate ($\ge 65%$ target)</strong>, as a failure here renders the AI model useless.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Key Milestone</th>
+<th style="text-align:left">Deliverable</th>
+<th style="text-align:left">Success Criteria</th>
+<th style="text-align:left">Timeframe</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>Data Readiness</strong></td>
+<td style="text-align:left">All AA, Bureau, and OCR pipelines integrated and tested.</td>
+<td style="text-align:left">$\mathbf{&gt;98%}$ OCR Accuracy; AA Adoption $\mathbf{&gt;80%}$.</td>
+<td style="text-align:left">Week 11</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>ACS Validation</strong></td>
+<td style="text-align:left">Final ACS v1.0 Model Deployed in Production.</td>
+<td style="text-align:left">$\mathbf{ACS\ AUC &gt; 0.75}$ on Test Data.</td>
+<td style="text-align:left">Week 18</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Go-Live</strong></td>
+<td style="text-align:left">Full End-to-End Onboarding Funnel (S1.1 $\rightarrow$ S4.2) Deployed.</td>
+<td style="text-align:left">$\mathbf{Full\ Profile\ Conversion\ Rate \ge 50%}$ (Initial).</td>
+<td style="text-align:left">Week 19</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p><em>This document contains proprietary information and is intended for internal use only.</em></p>
+<hr>
+
+</body>
+</html>
